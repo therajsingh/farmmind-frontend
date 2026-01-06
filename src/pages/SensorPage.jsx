@@ -8,6 +8,9 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import API_BASE_URL from "../utils/api";
+
+const BASE_URL = `${API_BASE_URL}/api`;
 
 export default function SensorPage() {
   const [data, setData] = useState([]);
@@ -19,7 +22,7 @@ export default function SensorPage() {
   const [toDate, setToDate] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/sensor-data/history?limit=50")
+    fetch(`${BASE_URL}/sensor-data/history?limit=50`)
       .then((res) => res.json())
       .then((res) => {
         setData(res); // backend order preserved

@@ -1,5 +1,7 @@
 import { useState } from "react";
+import API_BASE_URL from "../utils/api";
 
+const BASE_URL = `${API_BASE_URL}/api`;
 const cropSuggestions = [
   "Wheat",
   "Rice",
@@ -25,7 +27,7 @@ export default function CropPage() {
     setLoading(true);
     setAnalysis(null);
 
-    const res = await fetch("http://localhost:3000/api/crop-analysis", {
+    const res = await fetch(`${BASE_URL}/crop-analysis`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ crop }),

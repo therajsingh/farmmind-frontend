@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../utils/api";
 
+const BASE_URL = `${API_BASE_URL}/api`;
 export default function SoilPage() {
   const [sensorData, setSensorData] = useState(null);
   const [analysis, setAnalysis] = useState(null);
@@ -10,7 +12,7 @@ export default function SoilPage() {
      FETCH ONLY RAW SENSOR DATA FIRST
   ---------------------------------- */
   useEffect(() => {
-    fetch("http://localhost:3000/api/sensor-data/latest")
+    fetch(`${BASE_URL}/sensor-data/latest`)
       .then((res) => res.json())
       .then((data) => setSensorData(data))
       .catch(() => setError("Failed to load sensor data"));
@@ -24,7 +26,7 @@ export default function SoilPage() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:3000/api/sensor-data/analysis");
+      const res = await fetch(`${BASE_URL}/sensor-data/analysis`);
       const result = await res.json();
       setAnalysis(result.analysis);
     } catch {

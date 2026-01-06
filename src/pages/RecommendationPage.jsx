@@ -1,6 +1,8 @@
 import { useState } from "react";
 import PageWrapper from "../components/PageWrapper";
+import API_BASE_URL from "../utils/api";
 
+const BASE_URL = `${API_BASE_URL}/api`;
 export default function RecommendationPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -12,7 +14,7 @@ export default function RecommendationPage() {
     setData(null);
 
     try {
-      const res = await fetch("http://localhost:3000/api/crop-recommendation");
+      const res = await fetch(`${BASE_URL}/crop-recommendation`);
       const result = await res.json();
 
       console.log("RECOMMENDATION API RESPONSE 👉", result);
